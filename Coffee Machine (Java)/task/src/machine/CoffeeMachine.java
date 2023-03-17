@@ -7,46 +7,8 @@ public class CoffeeMachine {
 
     public static void main(String[] args) {
 
-        // Stage 1/6: Making coffee
-        /*
-        System.out.println("Starting to make a coffee\n" +
-                "Grinding coffee beans\n" +
-                "Boiling water\n" +
-                "Mixing boiled water with crushed coffee beans\n" +
-                "Pouring coffee into the cup\n" +
-                "Pouring some milk into the cup\n" +
-                "Coffee is ready!");
-        */
-        //Stage 2/6: Ingredient calculator
-        /*
-        Scanner scanner = new Scanner(System.in);
-        int numbersOfCoffee = scanner.nextInt();
-
-        System.out.println("For "+ numbersOfCoffee +" cups of coffee you will need:\n" +
-                numbersOfCoffee * 200 +" ml of water\n" +
-                numbersOfCoffee * 50 +" ml of milk\n" +
-                numbersOfCoffee * 15+" g of coffee beans");
-
-         */
-        //Stage 3/6: Estimate the number of servings
-        /*System.out.println("Write how many ml of water the coffee machine has:");
-        Scanner scanner = new Scanner(System.in);
-        int water = scanner.nextInt();
-        System.out.println("Write how many ml of milk the coffee machine has:");
-        int milk = scanner.nextInt();
-        System.out.println("Write how many grams of coffee beans the coffee machine has:");
-        int coffeeBeans = scanner.nextInt();
-        System.out.println("Write how many cups of coffee you will need:");
-        int quantityOfCups = scanner.nextInt();
-        int maxOfCoffee = countCups(water, milk, coffeeBeans);
-
-        //
-         */
-
-        //Stage 4/6: Buy, fill, take!
         MachineState machineState = new MachineState(400, 540, 120, 550, 9);
 
-        //System.out.println(machineState.printState());
         Scanner scanner = new Scanner(System.in);
         for(;;) {
             System.out.println("Write action (buy, fill, take, remaining, exit): ");

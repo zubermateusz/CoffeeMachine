@@ -29,7 +29,7 @@ public class MachineState {
     }
 
     public void buyEspresso(){
-        if(isEnoughProducts(250, 16, 4, this.cups)) {
+        if(isEnoughProducts(250, 16, 4)) {
             this.water -= 250;
             this.coffeeBeans -= 16;
             this.money += 4;
@@ -38,7 +38,7 @@ public class MachineState {
     }
 
     public void buyLatte(){
-        if(isEnoughProducts(350, 75, 20, this.cups)) {
+        if(isEnoughProducts(350, 75, 20)) {
             this.water -= 350;
             this.milk -= 75;
             this.coffeeBeans -= 20;
@@ -48,7 +48,7 @@ public class MachineState {
     }
 
     public void buyCappuccino(){
-        if(isEnoughProducts(200, 100, 12, this.cups)) {
+        if(isEnoughProducts(200, 100, 12)) {
             this.water -= 200;
             this.milk -= 100;
             this.coffeeBeans -= 12;
@@ -67,7 +67,7 @@ public class MachineState {
                 "$" + this.money + " of money";
     }
 
-    public boolean isEnoughProducts(int water, int milk, int coffeeBeans, int cups){
+    public boolean isEnoughProducts(int water, int milk, int coffeeBeans){
         int maxCupsCanDo = Math.min(this.water/water, Math.min(this.milk/milk, Math.min(this.cups/1, this.coffeeBeans/coffeeBeans)));
         boolean flag = true;
         if(maxCupsCanDo < 1) {
@@ -75,12 +75,8 @@ public class MachineState {
             System.out.println("No, I can make only " + maxCupsCanDo + " cup(s) of coffee");
         }
         if(maxCupsCanDo == 1) {
-            //System.out.println("Yes, I can make that amount of coffee");
             System.out.println("I have enough resources, making you a coffee!");
         }
-        //if(maxCupsCanDo > 1) {
-        //    System.out.println("Yes, I can make that amount of coffee (and even " + (maxCupsCanDo - 1) + " more than that)");
-        //}
         return flag;
 
     }// return max of cup of coffee
