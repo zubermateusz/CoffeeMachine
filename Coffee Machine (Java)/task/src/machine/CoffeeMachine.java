@@ -62,9 +62,9 @@ public class CoffeeMachine {
             case "buy":{
                 System.out.println("What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino: ");
                 switch (scanner.nextInt()) {
-                    case 1: machineState.buyEspresso(); break;
-                    case 2: machineState.buyLatte(); break;
-                    case 3: machineState.buyCappuccino();
+                    case 1 -> machineState.buyEspresso();
+                    case 2 -> machineState.buyLatte();
+                    case 3 -> machineState.buyCappuccino();
                 }
                 break;
             }
@@ -82,6 +82,13 @@ public class CoffeeMachine {
             }
             case "take":{
                 System.out.println("I gave you $" + machineState.takeMoney());
+                break;
+            }
+            case "remaining":{
+
+            }
+            case "exit":{
+                System.exit(0);
             }
         }
 
