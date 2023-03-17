@@ -15,7 +15,8 @@ public class CoffeeMachine {
                 "Pouring some milk into the cup\n" +
                 "Coffee is ready!");
         */
-
+        //Stage 2/6: Ingredient calculator
+        /*
         Scanner scanner = new Scanner(System.in);
         int numbersOfCoffee = scanner.nextInt();
 
@@ -23,5 +24,35 @@ public class CoffeeMachine {
                 numbersOfCoffee * 200 +" ml of water\n" +
                 numbersOfCoffee * 50 +" ml of milk\n" +
                 numbersOfCoffee * 15+" g of coffee beans");
+
+         */
+        //Stage 3/6: Estimate the number of servings
+        System.out.println("Write how many ml of water the coffee machine has:");
+        Scanner scanner = new Scanner(System.in);
+        int water = scanner.nextInt();
+        System.out.println("Write how many ml of milk the coffee machine has:");
+        int milk = scanner.nextInt();
+        System.out.println("Write how many grams of coffee beans the coffee machine has:");
+        int coffeeBeans = scanner.nextInt();
+        System.out.println("Write how many cups of coffee you will need:");
+        int quantityOfCups = scanner.nextInt();
+        int maxOfCoffee = countCups(water, milk, coffeeBeans);
+        if(maxOfCoffee < quantityOfCups) {
+            System.out.println("No, I can make only " + maxOfCoffee + " cup(s) of coffee");
+        }
+        if(maxOfCoffee == quantityOfCups) {
+            System.out.println("Yes, I can make that amount of coffee");
+        }
+        if(maxOfCoffee > quantityOfCups) {
+            System.out.println("Yes, I can make that amount of coffee (and even " + (maxOfCoffee - quantityOfCups) + " more than that)");
+        }
+
     }
+
+    static int countCups(int water, int milk, int coffeeBeans){
+        int waterForCup = 200;
+        int milkForCup = 50;
+        int coffeeBeansForCup = 15;
+        return Math.min(water/waterForCup, Math.min(milk/milkForCup, coffeeBeans/coffeeBeansForCup));
+    }// return max of cup of coffee
 }
