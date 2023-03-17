@@ -54,21 +54,20 @@ public class CoffeeMachine {
         //Stage 4/6: Buy, fill, take!
         MachineState machineState = new MachineState(400, 540, 120, 550, 9);
 
-        System.out.println(machineState.printState());
+        //System.out.println(machineState.printState());
 
         System.out.println("Write action (buy, fill, take): ");
         Scanner scanner = new Scanner(System.in);
         switch (scanner.nextLine()) {
-            case "buy":{
+            case "buy" -> {
                 System.out.println("What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino: ");
                 switch (scanner.nextInt()) {
                     case 1 -> machineState.buyEspresso();
                     case 2 -> machineState.buyLatte();
                     case 3 -> machineState.buyCappuccino();
                 }
-                break;
             }
-            case "fill":{
+            case "fill" -> {
                 System.out.println("Write how many ml of water you want to add: ");
                 int water = scanner.nextInt();
                 System.out.println("Write how many ml of milk you want to add: ");
@@ -78,22 +77,11 @@ public class CoffeeMachine {
                 System.out.println("Write how many disposable cups you want to add: ");
                 int cups = scanner.nextInt();
                 machineState.fill(water, milk, coffeeBeans, cups);
-                break;
             }
-            case "take":{
-                System.out.println("I gave you $" + machineState.takeMoney());
-                break;
-            }
-            case "remaining":{
-
-            }
-            case "exit":{
-                System.exit(0);
-            }
+            case "take" -> System.out.println("I gave you $" + machineState.takeMoney());
+            case "remaining" -> System.out.println(machineState.printState());
+            case "exit" -> System.exit(0);
         }
-
-        System.out.println(machineState.printState());
-
     }
 
     static int countCups(int water, int milk, int coffeeBeans){
