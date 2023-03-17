@@ -39,15 +39,7 @@ public class CoffeeMachine {
         System.out.println("Write how many cups of coffee you will need:");
         int quantityOfCups = scanner.nextInt();
         int maxOfCoffee = countCups(water, milk, coffeeBeans);
-        if(maxOfCoffee < quantityOfCups) {
-            System.out.println("No, I can make only " + maxOfCoffee + " cup(s) of coffee");
-        }
-        if(maxOfCoffee == quantityOfCups) {
-            System.out.println("Yes, I can make that amount of coffee");
-        }
-        if(maxOfCoffee > quantityOfCups) {
-            System.out.println("Yes, I can make that amount of coffee (and even " + (maxOfCoffee - quantityOfCups) + " more than that)");
-        }
+
         //
          */
 
@@ -55,39 +47,37 @@ public class CoffeeMachine {
         MachineState machineState = new MachineState(400, 540, 120, 550, 9);
 
         //System.out.println(machineState.printState());
-
-        System.out.println("Write action (buy, fill, take): ");
         Scanner scanner = new Scanner(System.in);
-        switch (scanner.nextLine()) {
-            case "buy" -> {
-                System.out.println("What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino: ");
-                switch (scanner.nextInt()) {
-                    case 1 -> machineState.buyEspresso();
-                    case 2 -> machineState.buyLatte();
-                    case 3 -> machineState.buyCappuccino();
+        for(;;) {
+            System.out.println("Write action (buy, fill, take, remaining, exit): ");
+
+            switch (scanner.nextLine()) {
+                case "buy" -> {
+                    System.out.println("What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino, back - to main menu: ");
+                    switch (scanner.nextLine()) {
+                        case "1" -> machineState.buyEspresso();
+                        case "2" -> machineState.buyLatte();
+                        case "3" -> machineState.buyCappuccino();
+                        case "back" -> { break; }
+                    }
                 }
+                case "fill" -> {
+                    System.out.println("Write how many ml of water you want to add: ");
+                    int water = scanner.nextInt();
+                    System.out.println("Write how many ml of milk you want to add: ");
+                    int milk = scanner.nextInt();
+                    System.out.println("Write how many grams of coffee beans you want to add: ");
+                    int coffeeBeans = scanner.nextInt();
+                    System.out.println("Write how many disposable cups you want to add: ");
+                    int cups = scanner.nextInt();
+                    machineState.fill(water, milk, coffeeBeans, cups);
+                }
+                case "take" -> System.out.println("I gave you $" + machineState.takeMoney());
+                case "remaining" -> System.out.println(machineState.printState());
+                case "exit" -> System.exit(0);
             }
-            case "fill" -> {
-                System.out.println("Write how many ml of water you want to add: ");
-                int water = scanner.nextInt();
-                System.out.println("Write how many ml of milk you want to add: ");
-                int milk = scanner.nextInt();
-                System.out.println("Write how many grams of coffee beans you want to add: ");
-                int coffeeBeans = scanner.nextInt();
-                System.out.println("Write how many disposable cups you want to add: ");
-                int cups = scanner.nextInt();
-                machineState.fill(water, milk, coffeeBeans, cups);
-            }
-            case "take" -> System.out.println("I gave you $" + machineState.takeMoney());
-            case "remaining" -> System.out.println(machineState.printState());
-            case "exit" -> System.exit(0);
         }
     }
 
-    static int countCups(int water, int milk, int coffeeBeans){
-        int waterForCup = 200;
-        int milkForCup = 50;
-        int coffeeBeansForCup = 15;
-        return Math.min(water/waterForCup, Math.min(milk/milkForCup, coffeeBeans/coffeeBeansForCup));
-    }// return max of cup of coffee
+
 }
